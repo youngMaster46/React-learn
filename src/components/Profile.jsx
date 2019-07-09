@@ -7,7 +7,7 @@ const Profile = () => {
                 <img src='https://poster.nicefon.ru/2018_03/25/350x220/221694ce80b6d6eecabeb6.jpg' />
             </div>
             <div>
-                ava + descr
+                ava + description
             </div>
             <div>
                 My posts
