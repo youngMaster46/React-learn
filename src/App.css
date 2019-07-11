@@ -8,20 +8,5 @@
   width: 1200px;
   margin: auto;
 }
-.nav {
-  grid-area: n;
-  background-color: burlywood;
-}
 
-.content {
-  grid-area: c;
-  background-color: cornflowerblue;
-}
 
-.header {
-  grid-area: h;
-  background-color: green;
-}
-.header img {
-  width: 20px;
-}
