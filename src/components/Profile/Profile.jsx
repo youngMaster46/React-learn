@@ -1,7 +1,8 @@
 import React from 'react';
 import classes from './Profile.module.css';
-import MyPosts from './Posts/MyPosts/MyPosts';
-import ProfileInfo from './Posts/ProfileInfo/ProfileInfo';
+import ProfileInfo from './ProfileInfo/ProfileInfo';
+import MyPosts from './MyPosts/MyPosts';
+
 
 
 const Profile = () => {
