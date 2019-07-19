@@ -25,7 +25,9 @@ let state = {
             {name: 'Dimych', id: '2'},
             {name: 'Vitya', id: '3'},
             {name: 'Dyadya', id: '4'}
-          ]
+          ],
+          newMessageText: 'zavitok-kursk.ru'
+
     },
     sidebar: {
         friendsList: [
@@ -36,7 +38,7 @@ let state = {
     }
 }
 
-export let addPost = () => {
+export const addPost = () => {
   let newPost = {
     id: 5,
     message: state.profilePage.newPostText,
@@ -48,10 +50,29 @@ export let addPost = () => {
   rerenderEntireTree(state);
 }
 
-export let updateNewPostText = (newText) => {
+export const updateNewPostText = (newText) => {
   state.profilePage.newPostText = newText;
   rerenderEntireTree(state);
 }
+
+export const subscribe = (observer) => {
+  rerenderEntireTree = observer;
+}
+
+export const addMessage = () => {
+  let newMessage = {
+    id: 8,
+    message: state.dialogsPage.newMessageText
+  };
+
+  state.dialogsPage.messagesData.push(newMessage);
+  state.dialogsPage.newMessageText = '';
+  rerenderEntireTree(state);
+}
+ export const updateMessageText = (text) => {
+   state.dialogsPage.newMessageText = text;
+   rerenderEntireTree(state);
+ }
 
 
 

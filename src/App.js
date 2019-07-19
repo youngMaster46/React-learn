@@ -8,7 +8,7 @@ import {Route} from 'react-router-dom';
 import News from './components/News/News';
 
 function App(props) {
-  const DComponent = () =>  <Dialogs state={props.state.dialogsPage} />
+  const DComponent = () =>  <Dialogs addMessage={props.addMessage} updateMessageText={props.updateMessageText} newMessageText={props.state.dialogsPage.newMessageText} state={props.state.dialogsPage} />
   const DProfile = () => <Profile addPost={props.addPost} updateNewPostText={props.updateNewPostText} newPostText={props.state.profilePage.newPostText} state = {props.state.profilePage}/> 
 
   return (
