@@ -1,3 +1,7 @@
+let rerenderEntireTree = () => {
+  console.log('state is changed');
+}
+
 let state = {
     profilePage: {
         postsData: [
@@ -7,7 +11,8 @@ let state = {
             {id: '4', message: 'Hey', likesCount: '34'},
             {id: '5', message: 'Hey', likesCount: '66'},
             {id: '6', message: 'Hey', likesCount: '23'}
-          ]
+          ],
+        newPostText: 'it-kamasutra.pro'
     },
     dialogsPage: {
         messagesData: [
@@ -31,14 +36,23 @@ let state = {
     }
 }
 
-export let addPost = (postMessage) => {
+export let addPost = () => {
   let newPost = {
     id: 5,
-    message: postMessage,
+    message: state.profilePage.newPostText,
     likesCount: 0
   };
 
   state.profilePage.postsData.push(newPost);
+  state.profilePage.newPostText = '';
+  rerenderEntireTree(state);
 }
+
+export let updateNewPostText = (newText) => {
+  state.profilePage.newPostText = newText;
+  rerenderEntireTree(state);
+}
+
+
 
 export default state;

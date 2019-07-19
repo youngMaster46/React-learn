@@ -9,7 +9,7 @@ import News from './components/News/News';
 
 function App(props) {
   const DComponent = () =>  <Dialogs state={props.state.dialogsPage} />
-  const DProfile = () => <Profile state = {props.state.profilePage} addPost={props.addPost}/> 
+  const DProfile = () => <Profile addPost={props.addPost} updateNewPostText={props.updateNewPostText} newPostText={props.state.profilePage.newPostText} state = {props.state.profilePage}/> 
 
   return (
     <div className="app-wrapper">
