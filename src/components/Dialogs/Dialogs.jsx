@@ -10,6 +10,7 @@ const Dialogs = (props) => {
     
     let newMessageElement = React.createRef();
     let addMessage = () => {
+        debugger;
         let text = newMessageElement.current.value;
         props.addMessage(text);
     }
