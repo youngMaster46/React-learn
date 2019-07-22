@@ -8,8 +8,8 @@ import {Route} from 'react-router-dom';
 import News from './components/News/News';
 
 function App(props) {
-  const DComponent = () =>  <Dialogs addMessage={props.addMessage} updateMessageText={props.updateMessageText} newMessageText={props.state.dialogsPage.newMessageText} state={props.state.dialogsPage} />
-  const DProfile = () => <Profile addPost={props.addPost} updateNewPostText={props.updateNewPostText} newPostText={props.state.profilePage.newPostText} state = {props.state.profilePage}/> 
+  const DComponent = () =>  <Dialogs dispatch={props.dispatch} newMessageText={props.state.dialogsPage.newMessageText} state={props.state.dialogsPage} />
+  const DProfile = () => <Profile dispatch={props.dispatch} newPostText={props.state.profilePage.newPostText} state = {props.state.profilePage}/> 
 
   return (
     <div className="app-wrapper">
