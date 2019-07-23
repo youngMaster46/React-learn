@@ -87,10 +87,17 @@ let store = {
 export const updateNewPostTextActionCreator = (text) => ({
       type: UPDATE_NEW_POST_TEXT,
       newText: text
-}) // круглые скобки значат что возвращается обьектпше 
+}); // Круглые скобки значат что возвращается обьект.
 export const addPostActionCreator = () => ({
       type: ADD_POST
-  })
+});
+export const updateMessageTextActionCreator = (text) => ({
+        type: UPDATE_MESSAGE_TEXT,
+        newText: text
+});
+export const addMessageActionCreator = () => ({
+        type: ADD_MESSAGE
+});
 
 export default store;
 window.store = store
