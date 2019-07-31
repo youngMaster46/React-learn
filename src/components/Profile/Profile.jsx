@@ -2,6 +2,7 @@ import React from 'react';
 
 import ProfileInfo from './ProfileInfo/ProfileInfo';
 import MyPosts from './MyPosts/MyPosts';
+import MyPostsComponent from './MyPosts/MyPostsComponent';
 
 
 
@@ -9,7 +10,7 @@ const Profile = (props) => {
     return (
         <div>
             <ProfileInfo />
-            <MyPosts dispatch={props.dispatch} newPostText={props.newPostText} postsData = {props.state.postsData}/>
+            <MyPostsComponent store={props.store}/>
         </div>
     )
 }
