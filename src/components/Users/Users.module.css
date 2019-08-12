@@ -2,3 +2,8 @@
     width: 100px;
     height: 100px;
 }
+
+.selectedItems {
+    font-weight: 800;
+    padding: 10px;
+}
