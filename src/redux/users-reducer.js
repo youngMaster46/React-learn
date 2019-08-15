@@ -63,9 +63,9 @@ export const setUsers = (users) => ({
     type: SET_USERS,
     users
 })
-export const setCurrentPage = (number) => ({
+export const setCurrentPage = (currentPage) => ({
     type: SET_CURRENT_PAGE,
-    number
+    currentPage
 })
 export const setTotalUsersCount = (totalNumber) => ({
     type: SET_TOTAL_USERS_COUNT,
