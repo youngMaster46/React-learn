@@ -19,7 +19,7 @@ function App(props) {
       <Navbar/>
      <div className='app-wrapper-content'>
       <Route render={DComponent}  path='/dialogs' />
-      <Route render={DProfile} path='/profile' />
+      <Route render={DProfile} path='/profile/:userId?' />
       <Route render={() => <UsersContainer/>} path='/users' />
       <Route component={News} path='/news' />
      </div>
