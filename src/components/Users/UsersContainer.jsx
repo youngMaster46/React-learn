@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import { follow, unfollow, setUsers, setCurrentPage, setTotalUsersCount, toggleIsFetching } from '../../redux/users-reducer';
+import { follow, unfollow, setUsers, setCurrentPage, setTotalUsersCount, toggleIsFetching, toggleFollowingProgress } from '../../redux/users-reducer';
 import React from 'react';
 import * as axios from 'axios';
 import Users from './Users';
@@ -33,10 +33,17 @@ class UsersContainer extends React.Component {
             {this.props.isFetching ?
                 <Preloader />
                 : null}
-            <Users currentPage={this.props.currentPage}
-                users={this.props.users} follow={this.props.follow}
-                unfollow={this.props.unfollow} onPageChanged={this.onPageChanged}
-                totalUsersCount={this.props.totalUsersCount} pageSize={this.props.pageSize} />
+            <Users 
+                currentPage={this.props.currentPage}
+                users={this.props.users}
+                follow={this.props.follow}
+                unfollow={this.props.unfollow} 
+                onPageChanged={this.onPageChanged}
+                totalUsersCount={this.props.totalUsersCount} 
+                pageSize={this.props.pageSize} 
+                toggleFollowingProgress={this.props.toggleFollowingProgress}
+                followingInProgress={this.props.followingInProgress}
+                />
         </>
     }
 }
@@ -47,7 +54,8 @@ let mapStateToProps = (state) => {
         pageSize: state.usersPage.pageSize,
         totalUsersCount: state.usersPage.totalUsersCount,
         currentPage: state.usersPage.currentPage,
-        isFetching: state.usersPage.isFetching
+        isFetching: state.usersPage.isFetching,
+        followingInProgress: state.usersPage.followingInProgress
     }
 }
 // let mapDispatchToProps = (dispatch) => {
@@ -78,5 +86,6 @@ export default connect(mapStateToProps, {
     setUsers,
     setCurrentPage,
     setTotalUsersCount,
-    toggleIsFetching
+    toggleIsFetching,
+    toggleFollowingProgress
 })(UsersContainer);
