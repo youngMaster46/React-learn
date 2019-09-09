@@ -61,11 +61,11 @@ const usersReducer = (state = initialState, action) => {
     }
 }
 
-export const follow = (userID) => ({
+export const followSuccess = (userID) => ({
     type: FOLLOW,
     userID: userID
 });
-export const unfollow = (userID) => ({
+export const unfollowSuccess = (userID) => ({
     type: UNFOLLOW,
     userID: userID
 });
