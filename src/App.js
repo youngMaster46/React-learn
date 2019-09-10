@@ -7,6 +7,7 @@ import UsersContainer from './components/Users/UsersContainer';
 import DialogsContainer from './components/Dialogs/DialogsContainer';
 import ProfileContainer from './components/Profile/ProfileContainer';
 import HeaderContainer from './components/Header/HeaderContainer';
+import LoginPage from './components/Login/Login';
 
 function App(props) {
   const DComponent = () =>  <DialogsContainer store={props.store} />
@@ -22,6 +23,8 @@ function App(props) {
       <Route render={DProfile} path='/profile/:userId?' />
       <Route render={() => <UsersContainer/>} path='/users' />
       <Route component={News} path='/news' />
+      <Route path='/login' render={() => <LoginPage />} />
+      
      </div>
       
     </div>
