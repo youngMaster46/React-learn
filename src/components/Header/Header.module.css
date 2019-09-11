@@ -5,7 +5,9 @@
   .header img {
     width: 20px;
   }
-.login {
+.login a {
   color: white;
+  text-decoration: none;
+  text-transform: uppercase;
   background: black;
 }
