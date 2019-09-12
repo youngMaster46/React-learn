@@ -23,7 +23,7 @@ const ProfileInfo = (props) => {
                 vk: {props.profile.contacts.vk}
                 <br />
 
-                <ProfileStatus status='hello max'/>
+                <ProfileStatus status={props.status} updateStatus={props.updateStatus}/>
             </div>
         </div>
     );
