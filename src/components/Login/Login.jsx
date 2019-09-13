@@ -1,5 +1,7 @@
 import React from 'react';
 import {Field, reduxForm} from 'redux-form';
+import { Input } from '../common/FormControls/FormControls';
+import { requiredField, maxLengthCreator } from '../../utils/validators/validators';
 
 const Login = (props) => {
     const onSubmit = (formData) => {
@@ -13,11 +15,11 @@ const Login = (props) => {
         </div>
     );
 }
-
+let maxLength11 = maxLengthCreator(11);
 const LoginForm = (props) => {
     return (<form onSubmit={props.handleSubmit}>
-        <div><Field component={'input'} placeholder={'username'} name={'login'} /></div>
-        <div><Field placeholder={'password'} component={'input'} name={'password'} /></div>
+        <div><Field component={Input} placeholder={'username'} name={'login'} validate={[requiredField, maxLength11]}/></div>
+        <div><Field placeholder={'password'} component={Input} name={'password'} validate={[requiredField, maxLength11]}/></div>
         <div><Field name={'rememberMe'} type={'checkbox'} component={'input'}/></div>
         <div><button>Submit</button></div>
     </form>)
