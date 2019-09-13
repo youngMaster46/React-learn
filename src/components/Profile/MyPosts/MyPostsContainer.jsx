@@ -10,14 +10,10 @@ let mapStateToProps = (state) => {
 }
 let mapDispatchToProps = (dispatch) => {
     return {
-        addPost: () => {
-            let action = addPostActionCreator();
+        addPost: (value) => {
+            let action = addPostActionCreator(value);
             dispatch(action);
         },
-        updateNewPostText: (text) => {
-            let action = updateNewPostTextActionCreator(text);
-            dispatch(action);
-        }
     }
 }
 const MyPostsComponent = connect(mapStateToProps, mapDispatchToProps)(MyPosts);

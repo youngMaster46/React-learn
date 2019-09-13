@@ -14,7 +14,6 @@ let initialState = {
         { id: '5', message: 'Hey', likesCount: '66' },
         { id: '6', message: 'Hey', likesCount: '23' }
     ],
-    newPostText: 'it-kamasutra.pro',
     profile: null,
     status: ''
 }
@@ -24,20 +23,13 @@ const profileReducer = (state = initialState, action) => {
         case ADD_POST: {
             let newPost = {
                 id: 5,
-                message: state.newPostText,
+                message: action.value,
                 likesCount: 0
             };
             return {
                 ...state,
-                newPostText: '',
                 postsData: [...state.postsData, newPost],
 
-            };
-        }
-        case UPDATE_NEW_POST_TEXT: {
-            return {
-                ...state,
-                newPostText: action.newText
             };
         }
         case SET_USER_PROFILE: {
@@ -58,12 +50,9 @@ const profileReducer = (state = initialState, action) => {
     }
 }
 
-export const updateNewPostTextActionCreator = (text) => ({
-    type: UPDATE_NEW_POST_TEXT,
-    newText: text
-}); // Круглые скобки значат что возвращается обьект.
-export const addPostActionCreator = () => ({
-    type: ADD_POST
+export const addPostActionCreator = (value) => ({
+    type: ADD_POST,
+    value
 });
 export const setUserProfile = (profile) => ({
     type: SET_USER_PROFILE,
@@ -77,7 +66,6 @@ export const getProfile = (userId) => {
         })
     }
 }
-
 
 export const setStatus = (status) => ({
     type: SET_STATUS,
