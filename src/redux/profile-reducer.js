@@ -1,9 +1,9 @@
 import { usersAPI, profileAPI } from "../api/api";
 
 const ADD_POST = 'ADD-POST';
-const UPDATE_NEW_POST_TEXT = 'UPDATE-NEW-POST-TEXT';
 const SET_USER_PROFILE = 'SET_USER_PROFILE';
 const SET_STATUS = 'SET_STATUS';
+const DELETE_POST = 'DELETE_POST';
 
 let initialState = {
     postsData: [
@@ -44,6 +44,12 @@ const profileReducer = (state = initialState, action) => {
                 status: action.status
             }
         }
+        // TDD
+        case DELETE_POST: 
+            return {
+                ...state,
+                postsData: state.postsData.filter(p => p.id != action.deleteId)
+            }
         default:
             return state;
 
@@ -84,5 +90,11 @@ export const updateStatus = (status) => (dispatch) => {
         }
     })
 }
+
+// for TDD
+export const deletePost = (deleteId) => ({
+    type: DELETE_POST,
+    deleteId
+})
 
 export default profileReducer;
