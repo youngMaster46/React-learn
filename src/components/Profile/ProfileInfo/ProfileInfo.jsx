@@ -4,27 +4,27 @@ import Preloader from '../../common/Preloader/Preloader';
 import ProfileStatus from './ProfileStatus';
 import ProfileStatusWithHooks from './ProfileStatusWithHooks';
 
-const ProfileInfo = (props) => {
-    if (!props.profile) {
+const ProfileInfo = ({profile, status, updateStatus}) => {
+    if (!profile) {
         return <Preloader />
     }
     return (
         <div>
             
             <div className={classes.ava}>
-                <img src={props.profile.photos.large} />
+                <img src={profile.photos.large} />
                 <br />
-                <img src={props.profile.photos.small} /> 
-                {props.profile.lookingForAJobDescription}
+                <img src={profile.photos.small} /> 
+                {profile.lookingForAJobDescription}
                 <br />
-                facebook: {props.profile.contacts.facebook}
+                facebook: {profile.contacts.facebook}
                 <br /> 
-                website: {props.profile.contacts.website}
+                website: {profile.contacts.website}
                 <br />
-                vk: {props.profile.contacts.vk}
+                vk: {profile.contacts.vk}
                 <br />
 
-                <ProfileStatusWithHooks status={props.status} updateStatus={props.updateStatus}/>
+                <ProfileStatusWithHooks status={status} updateStatus={updateStatus}/>
             </div>
         </div>
     );
