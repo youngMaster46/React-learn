@@ -3,7 +3,7 @@ import { NavLink } from 'react-router-dom';
 import styles from './Users.module.css';
 import userPhoto from '../../assets/images/default-icon.png';
 
-export const User = ({user, key, followingInProgress, follow, unfollow}) => {
+export const User = ({user, followingInProgress, follow, unfollow}) => {
     return ( <div >
         <span>
             <div>
