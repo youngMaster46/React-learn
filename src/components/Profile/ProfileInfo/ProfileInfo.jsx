@@ -1,30 +1,38 @@
 import React from 'react';
 import classes from './ProfileInfo.module.css';
 import Preloader from '../../common/Preloader/Preloader';
-import ProfileStatus from './ProfileStatus';
 import ProfileStatusWithHooks from './ProfileStatusWithHooks';
+import userPhoto from '../../../assets/images/default-icon.png';
 
-const ProfileInfo = ({profile, status, updateStatus}) => {
+const ProfileInfo = ({ profile, status, updateStatus, isOwner, savePhoto }) => {
     if (!profile) {
         return <Preloader />
     }
+    const onMainPhotoSuccess = (e) => {
+        if (e.target.files.length) {
+            savePhoto(e.target.files[0]);
+        }
+    }
     return (
         <div>
-            
+
             <div className={classes.ava}>
-                <img src={profile.photos.large} />
+                
+                <img src={profile.photos.large || userPhoto} className={classes.mainPhoto} />
                 <br />
-                <img src={profile.photos.small} /> 
+                {isOwner && <input type='file' onChange={onMainPhotoSuccess} />}
+
+                <br />
                 {profile.lookingForAJobDescription}
                 <br />
                 facebook: {profile.contacts.facebook}
-                <br /> 
+                <br />
                 website: {profile.contacts.website}
                 <br />
                 vk: {profile.contacts.vk}
                 <br />
 
-                <ProfileStatusWithHooks status={status} updateStatus={updateStatus}/>
+                <ProfileStatusWithHooks status={status} updateStatus={updateStatus} />
             </div>
         </div>
     );
