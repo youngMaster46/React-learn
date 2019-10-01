@@ -4,3 +4,11 @@
 .mainPhoto{
     max-width: 200px
 }
+.contacts{
+    border: 1px dashed pink;
+    padding: 10px;
+}
+.error{
+    border: 1px dashed red;
+    color: red;
+}
