@@ -1,7 +1,7 @@
-import React from 'react';
+import React, { Redirect } from 'react';
 import './App.css';
 import Navbar from './components/Navbar/Navbar';
-import { Route } from 'react-router-dom';
+import { Route, Switch } from 'react-router-dom';
 import News from './components/News/News';
 import UsersContainer from './components/Users/UsersContainer';
 
@@ -35,6 +35,19 @@ class App extends React.Component {
 
   componentDidMount() {
     this.props.initializedApp();
+
+    // catch some error
+    window.addEventListener('unhandledrejection', this.catchAllUnhandledErrors);
+  }
+
+  catchAllUnhandledErrors = (promiseRejectionEvent) => {
+    alert("Some error occured");
+    console.log(promiseRejectionEvent);
+  }
+
+  componentWillUnmount() {
+    // i need remove the subscribe
+    window.removeEventListener('unhandledrejection', this.catchAllUnhandledErrors);
   }
 
   render() {
@@ -47,11 +60,15 @@ class App extends React.Component {
         <HeaderContainer />
         <Navbar />
         <div className='app-wrapper-content'>
-          <Route render={withSuspense(DialogsContainer)} path='/dialogs' />
-          <Route render={withSuspense(ProfileContainer)} path='/profile/:userId?' />
-          <Route render={() => <UsersContainer />} path='/users' />
-          <Route component={News} path='/news' />
-          <Route path='/login' render={() => <LoginPage />} />
+          <Switch>
+            <Route exact path='/' render={() => <Redirect to={'/profile'} />} />
+            <Route render={withSuspense(DialogsContainer)} path='/dialogs' />
+            <Route render={withSuspense(ProfileContainer)} path='/profile/:userId?' />
+            <Route render={() => <UsersContainer />} path='/users' />
+            <Route component={News} path='/news' />
+            <Route path='/login' render={() => <LoginPage />} />
+            <Route path='*' render={() => <div> 404 not found</div>} />
+          </Switch>
 
         </div>
 

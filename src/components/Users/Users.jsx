@@ -1,9 +1,4 @@
 import React from 'react';
-
-
-
-import * as axios from 'axios';
-import { usersAPI } from '../../api/api';
 import { Paginator } from '../common/Paginator/Paginator';
 import { User } from './User';
 let Users = ({ currentPage, onPageChanged, totalUsersCount, pageSize, followingInProgress, follow, unfollow, users, ...props }) => {

@@ -1,7 +1,6 @@
 import React from 'react';
 import { createField, Input, Textarea } from '../../common/FormControls/FormControls';
 import {reduxForm} from 'redux-form';
-import { savePhoto } from '../../../redux/profile-reducer';
 import classes from './ProfileInfo.module.css';
 
 const ProfileDataForm = ({ profile, handleSubmit, error }) => {

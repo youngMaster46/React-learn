@@ -1,5 +1,5 @@
 import React from 'react';
-import { Field, reduxForm } from 'redux-form';
+import { reduxForm } from 'redux-form';
 import { Input, createField } from '../common/FormControls/FormControls';
 import { requiredField, maxLengthCreator } from '../../utils/validators/validators';
 import { login } from '../../redux/auth-reducer';
@@ -33,7 +33,7 @@ const LoginForm = ({ error, handleSubmit, captchaUrl }) => {
             <button>Submit</button>
         </div>
         
-        {captchaUrl && <img src={captchaUrl} />}
+        {captchaUrl && <img src={captchaUrl} alt='captcha'/>}
         {captchaUrl && createField('Enter symbols from image', 'captcha', [requiredField], Input, {} )}
 
         {error && <div className={styles.commonError}>{error}</div>}

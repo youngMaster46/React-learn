@@ -3,7 +3,6 @@ import classes from './ProfileInfo.module.css';
 import Preloader from '../../common/Preloader/Preloader';
 import ProfileStatusWithHooks from './ProfileStatusWithHooks';
 import userPhoto from '../../../assets/images/default-icon.png';
-import {createField, Input} from '../../common/FormControls/FormControls';
 import ProfileDataForm from './ProfileDataForm';
 
 const ProfileInfo = ({ profile, status, updateStatus, isOwner, savePhoto, saveProfile }) => {
@@ -28,7 +27,7 @@ const ProfileInfo = ({ profile, status, updateStatus, isOwner, savePhoto, savePr
 
             <div className={classes.ava}>
 
-                <img src={profile.photos.large || userPhoto} className={classes.mainPhoto} />
+                <img alt='profile' src={profile.photos.large || userPhoto} className={classes.mainPhoto} />
                 <br />
                 {isOwner && <input type='file' onChange={onMainPhotoSuccess} />}
                 

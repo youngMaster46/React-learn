@@ -1,4 +1,4 @@
-import { usersAPI, profileAPI } from "../api/api";
+import { profileAPI } from "../api/api";
 import { stopSubmit } from 'redux-form';
 
 const ADD_POST = 'ADD-POST';
@@ -46,13 +46,13 @@ const profileReducer = (state = initialState, action) => {
                 status: action.status
             }
         }
-        case SAVE_PHOTO_SUCCESS: 
-            return {...state, profile: {...state.profile, photos: action.photos}}
+        case SAVE_PHOTO_SUCCESS:
+            return { ...state, profile: { ...state.profile, photos: action.photos } }
         // TDD
         case DELETE_POST:
             return {
                 ...state,
-                postsData: state.postsData.filter(p => p.id != action.deleteId)
+                postsData: state.postsData.filter(p => p.id !== action.deleteId)
             }
         default:
             return state;
@@ -71,8 +71,8 @@ export const setUserProfile = (profile) => ({
 
 export const getProfile = (userId) => {
     return async (dispatch) => {
-        let data = await usersAPI.getProfile(userId);
-            dispatch(setUserProfile(data));
+        let data = await profileAPI.getProfile(userId);;
+        dispatch(setUserProfile(data));
     }
 }
 
@@ -83,19 +83,25 @@ export const setStatus = (status) => ({
 
 export const getStatus = (userId) => async (dispatch) => {
     let data = await profileAPI.getStatus(userId)
-        dispatch(setStatus(data))
+    dispatch(setStatus(data))
 }
 export const updateStatus = (status) => async (dispatch) => {
-    let data = await profileAPI.updateStatus(status)
-    if (data.resultCode === 0) {
-        dispatch(setStatus(status))
+    try {
+        let data = await profileAPI.updateStatus(status)
+        if (data.resultCode === 0) {
+            dispatch(setStatus(status))
+        }
     }
+    catch (error) {
+        console.log('some error' + error + '---------')
+    }
+
 }
 
 export const savePhoto = (file) => async (dispatch) => {
     let response = await profileAPI.savePhoto(file);
 
-    if (response.data.resultCode === 0 ) {
+    if (response.data.resultCode === 0) {
         dispatch(savePhotoSuccess(response.data.data.photos));
     }
 }
@@ -104,7 +110,7 @@ export const savePhotoSuccess = (photos) => ({
     photos
 })
 
-export const saveProfile = (profile) => 
+export const saveProfile = (profile) =>
     async (dispatch, getState) => {
         const userId = getState().auth.userId;
         let response = await profileAPI.saveProfile(profile);
@@ -112,7 +118,7 @@ export const saveProfile = (profile) =>
             dispatch(getProfile(userId));
         }
         else {
-            dispatch(stopSubmit('edit-profile', {_error: response.data.messages[0]}));
+            dispatch(stopSubmit('edit-profile', { _error: response.data.messages[0] }));
             return Promise.reject(response.data.messages[0]);
         }
     }
