@@ -1,7 +1,7 @@
-import React, { Redirect } from 'react';
+import React from 'react'; // there was wrong import (Switch, Redirect)
 import './App.css';
 import Navbar from './components/Navbar/Navbar';
-import { Route, Switch } from 'react-router-dom';
+import { Route, Switch, Redirect } from 'react-router-dom';
 import News from './components/News/News';
 import UsersContainer from './components/Users/UsersContainer';
 
