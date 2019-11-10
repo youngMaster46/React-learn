@@ -21,9 +21,7 @@ let initialState = {
 
 const usersReducer = (state = initialState, action) => {
     switch (action.type) {
-
         case FOLLOW:
-
             return {
                 ...state,
                 users: updateObjectInArray(state.users, action.userID, 'id', {followed: true})

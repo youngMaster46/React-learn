@@ -12,7 +12,6 @@ const MyPosts = React.memo(props => {
     let addPost = (value) => {
         props.addPost(value.addNewPost);
     }
-  console.log('hello')
     return (
        
         <div>

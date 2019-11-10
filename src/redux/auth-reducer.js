@@ -15,15 +15,12 @@ let initialState = {
 const authReducer = (state = initialState, action) => {
     switch (action.type) {
         case SET_USER_DATA:
-            return {
-                ...state,
-                ...action.payload
-            }
         case GET_CAPTCHA_URL_SUCCESS:
             return {
                 ...state,
                 ...action.payload
             }
+        
         default:
             return state;
 
@@ -33,6 +30,10 @@ const authReducer = (state = initialState, action) => {
 export const setAuthUserData = (userId, email, login, isAuth) => ({
     type: SET_USER_DATA,
     payload: { userId, email, login, isAuth }
+})
+export const getCaptchaUrlSuccess = (captchaUrl) => ({
+    type: GET_CAPTCHA_URL_SUCCESS,
+    payload: { captchaUrl }
 })
 
 export const getAuthUserData = () => {
@@ -72,8 +73,5 @@ export const getCaptchaUrl = () => async (dispatch) => {
     const captchaUrl = response.data.url;
     dispatch(getCaptchaUrlSuccess(captchaUrl))
 }
-export const getCaptchaUrlSuccess = (captchaUrl) => ({
-    type: GET_CAPTCHA_URL_SUCCESS,
-    payload: { captchaUrl }
-})
+
 export default authReducer;
