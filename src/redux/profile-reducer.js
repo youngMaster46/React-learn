@@ -1,20 +1,20 @@
 import { profileAPI } from "../api/api";
 import { stopSubmit } from 'redux-form';
 
-const ADD_POST = 'ADD-POST';
-const SET_USER_PROFILE = 'SET_USER_PROFILE';
-const SET_STATUS = 'SET_STATUS';
-const DELETE_POST = 'DELETE_POST';
-const SAVE_PHOTO_SUCCESS = 'SAVE_PHOTO_SUCCESS';
+const ADD_POST = 'social-max/profile/ADD-POST';
+const SET_USER_PROFILE = 'social-max/profile/SET_USER_PROFILE';
+const SET_STATUS = 'social-max/profile/SET_STATUS';
+const DELETE_POST = 'social-max/profile/DELETE_POST';
+const SAVE_PHOTO_SUCCESS = 'social-max/profile/SAVE_PHOTO_SUCCESS';
 
 let initialState = {
     postsData: [
-        { id: '1', message: 'Hello Max', likesCount: '11' },
-        { id: '2', message: 'You are very strong', likesCount: '4' },
-        { id: '3', message: 'Hey', likesCount: '99' },
-        { id: '4', message: 'Hey', likesCount: '34' },
-        { id: '5', message: 'Hey', likesCount: '66' },
-        { id: '6', message: 'Hey', likesCount: '23' }
+        { id: 1, message: 'Hello Max', likesCount: '11' },
+        { id: 2, message: 'You are very strong', likesCount: '4' },
+        { id: 3, message: 'Hey', likesCount: '99' },
+        { id: 4, message: 'Hey', likesCount: '34' },
+        { id: 5, message: 'Hey', likesCount: '66' },
+        { id: 6, message: 'Hey', likesCount: '23' }
     ],
     profile: null,
     status: ''

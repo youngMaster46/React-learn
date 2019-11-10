@@ -1,4 +1,5 @@
-const ADD_MESSAGE = 'ADD-MESSAGE';
+const ADD_MESSAGE = 'social-max/dialogs/ADD-MESSAGE';
+
 
 let initialState = {
     messagesData: [
