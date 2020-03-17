@@ -5,7 +5,7 @@ import Users from './Users';
 import Preloader from '../common/Preloader/Preloader';
 import { withAuthRedirect } from '../../hoc/withAuthRedirect';
 import {follow, unfollow, requestUsers} from '../../redux/users-reducer';
-import { compose } from '../../../../../../AppData/Local/Microsoft/TypeScript/3.6/node_modules/redux';
+import { compose } from 'redux';
 import { getUsers, getPageSize, getTotalUsersCount, getCurrentPage, getIsFetching, getFollowingInProgress } from '../../redux/users-selectors';
 
 class UsersContainer extends React.Component {

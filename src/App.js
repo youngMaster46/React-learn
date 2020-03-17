@@ -12,7 +12,7 @@ import HeaderContainer from './components/Header/HeaderContainer';
 import LoginPage from './components/Login/Login';
 import { initializedApp } from './redux/app-reducer';
 import { connect } from 'react-redux';
-import { compose } from '../../../../AppData/Local/Microsoft/TypeScript/3.6/node_modules/redux';
+import { compose } from 'redux';
 import Preloader from './components/common/Preloader/Preloader';
 import store from './redux/redux-store';
 import { HashRouter } from 'react-router-dom';
