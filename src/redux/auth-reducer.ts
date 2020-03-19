@@ -52,7 +52,7 @@ type GetCaptchaUrlSuccessActionType = {
     type: typeof GET_CAPTCHA_URL_SUCCESS
     payload: {captchaUrl:string}
 }
-export const getCaptchaUrlSuccess = (captchaUrl:string) => ({
+export const getCaptchaUrlSuccess = (captchaUrl:string):GetCaptchaUrlSuccessActionType => ({
     type: GET_CAPTCHA_URL_SUCCESS,
     payload: { captchaUrl }
 })
