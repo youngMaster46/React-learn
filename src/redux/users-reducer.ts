@@ -1,30 +1,25 @@
+import {  UsersType } from './../../types/types';
 import { usersAPI } from '../api/api';
 import { updateObjectInArray } from '../utils/object-helpers';
 
-const FOLLOW: string = 'social-max/users/FOLLOW';
-const UNFOLLOW: string = 'social-max/users/UNFOLLOW';
-const SET_USERS: string = 'social-max/users/SET_USERS';
-const SET_CURRENT_PAGE: string = 'social-max/users/SET_CURRENT_PAGE';
-const SET_TOTAL_USERS_COUNT: string = 'social-max/users/SET_TOTAL_USERS_COUNT';
-const TOGGLE_IS_FETCHING: string = 'social-max/users/TOGGLE_IS_FETCHING';
-const TOGGLE_IS_FOLLOWING_PROGRESS: string = 'social-max/users/TOGGLE_IS_FOLLOWING_PROGRESS';
+const FOLLOW = 'social-max/users/FOLLOW';
+const UNFOLLOW = 'social-max/users/UNFOLLOW';
+const SET_USERS = 'social-max/users/SET_USERS';
+const SET_CURRENT_PAGE = 'social-max/users/SET_CURRENT_PAGE';
+const SET_TOTAL_USERS_COUNT = 'social-max/users/SET_TOTAL_USERS_COUNT';
+const TOGGLE_IS_FETCHING = 'social-max/users/TOGGLE_IS_FETCHING';
+const TOGGLE_IS_FOLLOWING_PROGRESS = 'social-max/users/TOGGLE_IS_FOLLOWING_PROGRESS';
 
-export type InitialStateType = {
-    users: Array<string>
-    pageSize: number
-    totalUsersCount: number
-    currentPage: number
-    isFetching: boolean
-    followingInProgress: Array<string>
-}
-let initialState: InitialStateType = {
-    users: [],
+
+let initialState = {
+    users: [] as Array<UsersType>,
     pageSize: 5,
     totalUsersCount: 0,
     currentPage: 1,
     isFetching: true,
-    followingInProgress: []
+    followingInProgress: [] as Array<number> // array if user's id
 }
+export type InitialStateType = typeof initialState
 
 const usersReducer = (state = initialState, action: any) => {
     switch (action.type) {
@@ -77,9 +72,9 @@ export const unfollowSuccess = (userID: number): UnfollowSuccessActionType => ({
 });
 type SetUsersActionType = {
     type: typeof SET_USERS
-    users: Array<string>
+    users: Array<UsersType>
 }
-export const setUsers = (users: Array<string>): SetUsersActionType => ({
+export const setUsers = (users: Array<UsersType>): SetUsersActionType => ({
     type: SET_USERS,
     users
 })

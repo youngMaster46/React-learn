@@ -1,45 +1,51 @@
-const ADD_MESSAGE:string = 'social-max/dialogs/ADD-MESSAGE';
+const ADD_MESSAGE = 'social-max/dialogs/ADD-MESSAGE';
 
-export type InitialStateType = {
-    messagesData:Array<{id:number, message:string}>
-    dialogsData:Array<{name:string, id:number}>
+type DialogType = {
+    name: string
+    id: number
 }
-let initialState:InitialStateType = {
+type MessageType = {
+    id: number
+    message: string
+}
+
+let initialState = {
     messagesData: [
-        {id: 1, message: 'I am Jack. Nice to meet you, Sandra'},
-        {id: 2, message: 'Glad to see you too, Jack. Are you alone at this party?'},
-        {id: 3, message: 'Yes, I am. My friend has fallen ill today and decided to stay at home. And you?'}
-      ],
-      dialogsData: [
-        {name: 'Max', id: 1},
-        {name: 'Dimych', id: 2},
-        {name: 'Vitya', id: 3},
-        {name: 'Dyadya', id: 4}
-      ],
+        { id: 1, message: 'I am Jack. Nice to meet you, Sandra' },
+        { id: 2, message: 'Glad to see you too, Jack. Are you alone at this party?' },
+        { id: 3, message: 'Yes, I am. My friend has fallen ill today and decided to stay at home. And you?' }
+    ] as Array<MessageType>,
+    dialogsData: [
+        { name: 'Max', id: 1 },
+        { name: 'Dimych', id: 2 },
+        { name: 'Vitya', id: 3 },
+        { name: 'Dyadya', id: 4 }
+    ] as Array<DialogType>,
 }
+export type InitialStateType = typeof initialState
 
-const dialogsReducer = (state = initialState, action:any):InitialStateType => {
+const dialogsReducer = (state = initialState, action: any): InitialStateType => {
     switch (action.type) {
         case ADD_MESSAGE: {
             let newMessage = {
                 id: 8,
                 message: action.message
-              };
-              
-             return {
-                  ...state,
-                  messagesData: [...state.messagesData, newMessage],
-                };
-            }
+            };
+
+            return {
+                ...state,
+                messagesData: [...state.messagesData, newMessage],
+            };
+        }
         default:
             return state;
-    }    
+    }
 }
 type AddMessageActionCreatorType = {
     type: typeof ADD_MESSAGE
-    message:string
+    message: string
 }
-export const addMessageActionCreator = (message:string):AddMessageActionCreatorType => ({
+export const addMessageActionCreator = (message: string): AddMessageActionCreatorType => ({
     type: ADD_MESSAGE,
     message
 });

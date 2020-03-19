@@ -1,23 +1,17 @@
 import { authAPI, securityAPI } from "../api/api";
  import { stopSubmit } from 'redux-form';
 
-const SET_USER_DATA:string = 'social-max/auth/SET_USER_DATA';
-const GET_CAPTCHA_URL_SUCCESS:string = 'social-max/auth/GET_CAPTCHA_URL_SUCCESS';
+const SET_USER_DATA = 'social-max/auth/SET_USER_DATA';
+const GET_CAPTCHA_URL_SUCCESS = 'social-max/auth/GET_CAPTCHA_URL_SUCCESS';
 
-export type InitialStateType = {
-    userId: number | null
-    email: string | null
-    login: string | null
-    isAuth: boolean
-    captchaUrl: string | null
-}
-let initialState: InitialStateType = {
+let initialState = {
     userId: null,
     email: null,
     login: null,
     isAuth: false,
     captchaUrl: null
 };
+export type InitialStateType = typeof initialState
 
 const authReducer = (state = initialState, action:any):InitialStateType => {
     switch (action.type) {

@@ -1,15 +1,14 @@
 import { getAuthUserData } from "./auth-reducer";
 
-const INITIALIZED_SUCCESS:string = 'social-max/app/INITIALIZED_SUCCESS';
+const INITIALIZED_SUCCESS = 'social-max/app/INITIALIZED_SUCCESS';
 
-export type InitialStateType = {
-    initialized: boolean
-}
-let initialState: InitialStateType = {
+
+let initialState = {
   initialized: false 
 };
-                        /*: InitialStateType(Можно не писать,тк избыточно) */
-const appReducer = (state = initialState, action: any/*InitializedSuccessActionType*/): InitialStateType => {
+export type InitialStateType = typeof initialState
+
+const appReducer = (state = initialState, action: any): InitialStateType => {
     switch (action.type) {
         case INITIALIZED_SUCCESS: 
             return {
@@ -22,7 +21,7 @@ const appReducer = (state = initialState, action: any/*InitializedSuccessActionT
     }
 }
 type InitializedSuccessActionType = {
-    type: typeof INITIALIZED_SUCCESS //'social-max/app/INITIALIZED_SUCCESS'
+    type: typeof INITIALIZED_SUCCESS 
 }
 
 export const initializedSuccess: () => InitializedSuccessActionType = () => ({
