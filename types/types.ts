@@ -1,4 +1,4 @@
- export type PostType = {
+export type PostType = {
     id: number
     message: string
     likesCount: number
@@ -18,19 +18,34 @@ export type PhotosType = {
     large: string | null
 }
 export type ProfileType = {
-    profile: {
-        userId: number
-        lookingForAJob: boolean
-        lookingForAJobDescription: string
-        fullName: string
-        contacts: ContactsType
-        photos: PhotosType
-    }
+
+    userId: number
+    lookingForAJob: boolean
+    lookingForAJobDescription: string
+    fullName: string
+    contacts: ContactsType
+    photos: PhotosType
+    aboutMe: string
+
 }
 export type UsersType = {
     id: number
-    name:string
-    status:string
+    name: string
+    status: string
     photos: PhotosType
-    followed:boolean
+    followed: boolean
+}
+export type FormDataType = {
+    email: string
+    password: string
+    rememberMe: boolean
+    captcha: string
+}
+export type DialogType = {
+    name: string
+    id: number
+}
+export type MessageType = {
+    id: number
+    message: string
 }

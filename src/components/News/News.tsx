@@ -1,7 +1,10 @@
 import React from 'react';
 import classes from './News.module.css';
 
-const News = () => {
+type PropsType = {
+}
+
+const News: React.FC<PropsType> = () => {
     return (
         <div className={classes.news}>This is News</div>
     );

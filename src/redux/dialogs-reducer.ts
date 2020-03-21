@@ -1,13 +1,8 @@
+import { DialogType, MessageType } from './../../types/types';
 const ADD_MESSAGE = 'social-max/dialogs/ADD-MESSAGE';
 
-type DialogType = {
-    name: string
-    id: number
-}
-type MessageType = {
-    id: number
-    message: string
-}
+
+
 
 let initialState = {
     messagesData: [

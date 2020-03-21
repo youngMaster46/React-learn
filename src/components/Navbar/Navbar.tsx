@@ -1,8 +1,9 @@
 import React from 'react';
 import classes from './Navbar.module.css';
 import {NavLink} from 'react-router-dom';
-
-const Navbar = (props) => {
+type PropsType = {
+}
+const Navbar: React.FC<PropsType> = (props) => {
   
     return (
         <nav className={classes.nav}>

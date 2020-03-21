@@ -6,12 +6,22 @@ import {Redirect} from 'react-router-dom';
 import {Field, reduxForm} from 'redux-form';
 import { requiredField, maxLengthCreator } from '../../utils/validators/validators';
 import { Textarea } from '../common/FormControls/FormControls';
+import { DialogType, MessageType } from '../../../types/types';
 
-const Dialogs = (props) => {
+ 
+type PropsType = {
+    dialogsPage: {
+        dialogsData: Array<DialogType>
+        messagesData: Array<MessageType>
+    }
+    addMessage:(message:string) => void
+    isAuth: boolean
+}
+const Dialogs: React.FC<PropsType> = (props) => {
     let dialogsElements = props.dialogsPage.dialogsData.map( dialogData => <DialogItem key={dialogData.id} name={dialogData.name} id={dialogData.id}/> );
     let messagesElements = props.dialogsPage.messagesData.map( messageData => <Message key={messageData.id} message={messageData.message} /> );
   
-    let addMessage = (message) => {
+    let addMessage = (message:any) => {
         props.addMessage(message.textareaMessage);
     }
 
@@ -28,7 +38,11 @@ const Dialogs = (props) => {
     );
 }
 let maxLength10 = maxLengthCreator(10);
-const AddMessageForm = (props) => {
+type AddMessageFormType = {
+    handleSubmit: () => void
+
+}
+const AddMessageForm: React.FC<AddMessageFormType> = (props) => {
     
     return (
     <form onSubmit={props.handleSubmit} className={classes.messages}>
