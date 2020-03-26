@@ -1,9 +1,6 @@
 import { DialogType, MessageType } from './../../types/types';
 const ADD_MESSAGE = 'social-max/dialogs/ADD-MESSAGE';
 
-
-
-
 let initialState = {
     messagesData: [
         { id: 1, message: 'I am Jack. Nice to meet you, Sandra' },
@@ -18,13 +15,14 @@ let initialState = {
     ] as Array<DialogType>,
 }
 export type InitialStateType = typeof initialState
+type ActionsTypes = AddMessageActionCreatorType
 
-const dialogsReducer = (state = initialState, action: any): InitialStateType => {
+const dialogsReducer = (state = initialState, action: ActionsTypes): InitialStateType => {
     switch (action.type) {
         case ADD_MESSAGE: {
             let newMessage = {
                 id: 8,
-                message: action.message
+                message: action.message,
             };
 
             return {
