@@ -1,22 +1,24 @@
 import { AppStateType } from './redux-store';
-import { Dispatch } from 'react';
+import { Dispatch } from 'redux';
 import { getAuthUserData } from "./auth-reducer";
+import { ThunkAction } from 'redux-thunk';
 
 const INITIALIZED_SUCCESS = 'social-max/app/INITIALIZED_SUCCESS';
 
 
 let initialState = {
-  initialized: false 
+    initialized: false
 };
 export type InitialStateType = typeof initialState
+
 type ActionsTypes = InitializedSuccessActionType
 
 const appReducer = (state = initialState, action: ActionsTypes): InitialStateType => {
     switch (action.type) {
-        case INITIALIZED_SUCCESS: 
+        case INITIALIZED_SUCCESS:
             return {
                 ...state,
-                initialized: true
+                initialized: true,
             }
         default:
             return state;
@@ -24,7 +26,7 @@ const appReducer = (state = initialState, action: ActionsTypes): InitialStateTyp
     }
 }
 type InitializedSuccessActionType = {
-    type: typeof INITIALIZED_SUCCESS 
+    type: typeof INITIALIZED_SUCCESS
 }
 
 export const initializedSuccess: () => InitializedSuccessActionType = () => ({
@@ -32,10 +34,12 @@ export const initializedSuccess: () => InitializedSuccessActionType = () => ({
 })
 type DispatchType = Dispatch<ActionsTypes>
 type GetStateType = () => AppStateType
-export const initializedApp = () => {
-    return (dispatch:DispatchType, getState: GetStateType) => {
+
+export const initializedApp = (): ThunkAction<Promise<void>, AppStateType, unknown, ActionsTypes> => {
+    // Теперь не нужно устанавливать типы dispatch и getState отдельно
+    return async (dispatch, getState) => {
         let promise = dispatch(getAuthUserData());
-        Promise.all([promise]).then( () => { dispatch( initializedSuccess() ) })
+        Promise.all([promise]).then(() => { dispatch(initializedSuccess()) })
     }
 }
 export default appReducer;

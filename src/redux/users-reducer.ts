@@ -1,9 +1,8 @@
 import { AppStateType } from './redux-store';
-import { Dispatch } from 'react';
+import { Dispatch } from 'redux';
 import { UsersType } from './../../types/types';
 import { usersAPI } from '../api/api';
 import { updateObjectInArray } from '../utils/object-helpers';
-import { Action } from 'redux';
 import { ThunkAction, ThunkDispatch } from 'redux-thunk';
 
 const FOLLOW = 'social-max/users/FOLLOW';
@@ -25,7 +24,7 @@ let initialState = {
 }
 export type InitialStateType = typeof initialState
 
-const usersReducer = (state = initialState, action: ActionsTypes) => {
+const usersReducer = (state = initialState, action: ActionsTypes): InitialStateType => {
     switch (action.type) {
         case FOLLOW:
             return {
@@ -117,9 +116,11 @@ export const toggleFollowingProgress = (isFetching: boolean, userId: number): To
     userId
 })
 type ActionsTypes = FollowSuccessActionType | UnfollowSuccessActionType | SetUsersActionType | SetCurrentPageActionType | SetTotalUsersCountActionType | ToggleIsFetchingActionType | ToggleFollowingProgress
+
 type GetStateType = () => AppStateType
 type DispatchType = Dispatch<ActionsTypes>
-type ThunkType = ThunkAction<Promise<void>, AppStateType, unknown, Action<string>>
+
+type ThunkType = ThunkAction<Promise<void>, AppStateType, unknown, ActionsTypes>
 
 export const requestUsers = (page: number, pageSize: number): ThunkType => {
     return async (dispatch: DispatchType, getState: GetStateType) => {
@@ -147,13 +148,13 @@ const _followUnfollowFlow = async (dispatch: DispatchType, userId: number, apiMe
 }
 
 export const unfollow = (userId: number): ThunkType => {
-    return async (dispatch: ThunkDispatch<unknown, unknown, FollowSuccessActionType | UnfollowSuccessActionType>) => {
+    return async (dispatch) => {
         _followUnfollowFlow(dispatch, userId, usersAPI.deleteUsers.bind(usersAPI), unfollowSuccess)
     }
 }
 
 export const follow = (userId: number): ThunkType => {
-    return async (dispatch: ThunkDispatch<unknown, unknown, FollowSuccessActionType | UnfollowSuccessActionType>) => {
+    return async (dispatch) => {
         _followUnfollowFlow(dispatch, userId, usersAPI.followUsers.bind(usersAPI), followSuccess);
     }
 }
