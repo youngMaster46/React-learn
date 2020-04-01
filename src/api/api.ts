@@ -1,4 +1,4 @@
-import { ProfileType, PhotosType } from './../../types/types';
+import { ProfileType, PhotosType, UsersType } from './../../types/types';
 import axios, { AxiosResponse } from 'axios';
 
 const instance = axios.create({
@@ -16,13 +16,7 @@ export enum ResultCodeForCaptcha {
     CaptchaIsRequired = 10
 }
 type GetUsersResponseType = {
-    items: {
-        id: number
-        name: string
-        status: string
-        photos: PhotosType
-        followed: boolean
-    }
+    items: UsersType
     totalCount: number
     error: string
 }
@@ -52,13 +46,19 @@ export const usersAPI = {
     }
 }
 type GetProfileResponseType = ProfileType
-type GetStatusResponseType = {/*any type*/ }
+type GetStatusResponseType = {tempString:any }
 type UpdateStatusResponseType = {
     data: {}
     resultCode: ResultCodesEnum
     messages: Array<string>
 }
-type SavePhotoResponseType = PhotosType
+type SavePhotoResponseType = {
+    data: {
+        photos: PhotosType
+    }
+    resultCode: ResultCodesEnum
+    messages: Array<string>
+} 
 type SaveProfileResponseType = {
     data: {}
     resultCode: ResultCodesEnum
@@ -77,7 +77,7 @@ export const profileAPI = {
     savePhoto(photoFile: string) {
         var formData = new FormData();
         formData.append('image', photoFile);
-        return instance.put<SavePhotoResponseType>(`profile/photo`, formData, { headers: { 'Content-Type': 'multipart/form-data' } })
+        return instance.put<SavePhotoResponseType>(`profile/photo`, formData, { headers: { 'Content-Type': 'multipart/form-data' } }).then(res => res.data)
     },
     saveProfile(profile: ProfileType) {
         return instance.put<SaveProfileResponseType>(`profile`, profile);

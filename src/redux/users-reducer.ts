@@ -3,7 +3,7 @@ import { Dispatch } from 'redux';
 import { UsersType } from './../../types/types';
 import { usersAPI } from '../api/api';
 import { updateObjectInArray } from '../utils/object-helpers';
-import { ThunkAction, ThunkDispatch } from 'redux-thunk';
+import { ThunkAction } from 'redux-thunk';
 
 const FOLLOW = 'social-max/users/FOLLOW';
 const UNFOLLOW = 'social-max/users/UNFOLLOW';
@@ -129,7 +129,7 @@ export const requestUsers = (page: number, pageSize: number): ThunkType => {
 
         let data = await usersAPI.getUsers(page, pageSize)
         dispatch(toggleIsFetching(false));
-        dispatch(setUsers(data.items));
+        dispatch(setUsers([data.items]));
         dispatch(setTotalUsersCount(data.totalCount));
     }
 }

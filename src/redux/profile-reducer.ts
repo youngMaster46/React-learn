@@ -1,7 +1,7 @@
 import { AppStateType } from './redux-store';
 import { ThunkAction } from 'redux-thunk';
 import { PostType, ProfileType, PhotosType } from './../../types/types';
-import { profileAPI } from "../api/api";
+import { profileAPI, ResultCodesEnum } from "../api/api";
 import { stopSubmit } from 'redux-form';
 
 const ADD_POST = 'social-max/profile/ADD-POST';
@@ -99,12 +99,12 @@ export const setStatus = (status: string): SetStatusActionType => ({
 
 export const getStatus = (userId: number): ThunkType => async (dispatch, getState) => {
     let data = await profileAPI.getStatus(userId)
-    dispatch(setStatus(data))
+    dispatch(setStatus(data.tempString))
 }
 export const updateStatus = (status: string): ThunkType => async (dispatch, getState) => {
     try {
         let data = await profileAPI.updateStatus(status)
-        if (data.resultCode === 0) {
+        if (data.resultCode === ResultCodesEnum.Success) {
             dispatch(setStatus(status))
         }
     }
@@ -117,8 +117,8 @@ export const updateStatus = (status: string): ThunkType => async (dispatch, getS
 export const savePhoto = (file: string): ThunkType => async (dispatch, getState, extraArgument) => {
     let response = await profileAPI.savePhoto(file);
 
-    if (response.data.resultCode === 0) {
-        dispatch(savePhotoSuccess(response.data.data.photos));
+    if (response.resultCode === ResultCodesEnum.Success) {
+        dispatch(savePhotoSuccess(response.data.photos));
     }
 }
 type SavePhotoSuccessActionType = {
@@ -134,7 +134,7 @@ export const saveProfile = (profile: ProfileType): ThunkType =>
     async (dispatch, getState) => {
         const userId = getState().auth.userId;
         let response = await profileAPI.saveProfile(profile);
-        if (response.data.resultCode === 0) {
+        if (response.data.resultCode === ResultCodesEnum.Success) {
             dispatch(getProfile(userId));
         }
         else {
